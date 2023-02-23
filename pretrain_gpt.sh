@@ -6,7 +6,7 @@ RANK=0
 WORLD_SIZE=1
 
 DATA_PATH=gpt2_data/my-gpt2_text_document
-CHECKPOINT_PATH=gpt2/ckpt
+CHECKPOINT_PATH=ckpt
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 export WORLD_SIZE=1
 export MASTER_ADDR="localhost"

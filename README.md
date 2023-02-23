@@ -1,4 +1,4 @@
-The is a of using megatron to pretrain GPT2
+The is an example of using megatron to pretrain GPT2
 
 # Prepare Env
 
@@ -8,7 +8,7 @@ The is a of using megatron to pretrain GPT2
 python -c "import torch; print(torch.__version__)"
 # out: 1.13.1+cu117
 ```
-that means your `toch` version is 1.13.1, and your required cuda version is 11.7. However, you real cuda version may not be that one. To get the cuda version in you machine, 
+that means your `torch` version is 1.13.1, and your required cuda version is 11.7. However, you real cuda version may not be that one. To get the cuda version in you machine, 
 ```bash
 nvcc -V
 ```
@@ -42,7 +42,7 @@ git apply ../megatron.patch
 python setup.py bdist_wheel
 cd dist
 pip install megatron-*
-cd .. & rm -rf Megatron-LM
+cd ../.. && rm -rf Megatron-LM
 ```
 
 # Prepare Data
