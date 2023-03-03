@@ -3,10 +3,26 @@ The is an example of using megatron to pretrain GPT2
 # Prepare Env
 
 ## 1. Ensure you CUDA env is fine
+### from the beginning
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh
+ln -s ~/miniconda3/lib ~/miniconda3/lib64
 
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+nvcc --version
+conda install -c nvidia cuda-nvprof=11.7
+```
+- download and install miniconda
+- using `conda` install pytorch, this will install cuda-11.7
+- install `cuda-nvprof` to ensure nvprof is 11.7
+
+
+### torch has installed
 ```bash
 python -c "import torch; print(torch.__version__)"
-# out: 1.13.1+cu117
+# out: 1.13.1+cu117 or 1.13.1
 ```
 that means your `torch` version is 1.13.1, and your required cuda version is 11.7. However, you real cuda version may not be that one. To get the cuda version in you machine, 
 ```bash
@@ -20,17 +36,18 @@ rm cuda_11.7.0_515.43.04_linux.run
 ```
 
 ## 2. Install apex and Ninja
-First, install apex, which enable you mixed precision and distributed training in Pytorch: 
+First, since `megatron` depend on JIT, Ninja is required to work through:
+```bash
+sudo apt-get -y install ninja-build
+pip install Ninja
+```
+
+Second, install apex, which enable you mixed precision and distributed training in Pytorch: 
 ```bash
 git clone https://github.com/NVIDIA/apex
 cd apex
 pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 cd .. && rm -rf apex
-```
-
-Second, since `megatron` depend on JIT, Ninja is required to work through:
-```bash
-sudo apt-get -y install ninja-build
 ```
 
 ## 3. Install Megatron
