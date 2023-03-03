@@ -12,6 +12,7 @@ export WORLD_SIZE=1
 export MASTER_ADDR="localhost"
 export MASTER_PORT=9876
 
+# --no-gradient-accumulation-fusion \
 python pretrain_gpt.py \
        --num-layers 24 \
        --hidden-size 1024 \
@@ -20,8 +21,7 @@ python pretrain_gpt.py \
        --global-batch-size 8 \
        --seq-length 1024 \
        --max-position-embeddings 1024 \
-       --no-gradient-accumulation-fusion \
-       --train-iters 500000 \
+       --train-iters 5000 \
        --lr-decay-iters 320000 \
        --save $CHECKPOINT_PATH \
        --load $CHECKPOINT_PATH \

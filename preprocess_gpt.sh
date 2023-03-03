@@ -6,6 +6,7 @@ python preprocess_data.py \
        --tokenizer-type GPT2BPETokenizer \
        --merge-file gpt2-merges.txt \
        --append-eod \
+       --split-sentences \
        --workers 4 \
        --chunk-size 128
 
