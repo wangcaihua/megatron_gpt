@@ -1,6 +1,10 @@
 The is an example of using megatron to pretrain GPT2
 
 # Prepare Env
+```
+git clone https://github.com/wangcaihua/megatron_gpt.git
+git remote set-url origin https://<githubtoken>@github.com/wangcaihua/megatron_gpt.git
+```
 
 ## 1. Ensure you CUDA env is fine
 ### from the beginning
