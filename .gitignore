@@ -132,3 +132,4 @@ ckpt/
 gpt2-merges.txt
 gpt2-vocab.json
 megatron_lm_345m_v0.0.zip
+.vscode/

@@ -1,8 +1,29 @@
-diff --git a/megatron/fp16_deprecated/__init__.py b/megatron/fp16_deprecated/__init__.py
-new file mode 100644
-index 0000000..e69de29
+diff --git a/megatron/arguments.py b/megatron/arguments.py
+index 5dfbb20..64ec1ae 100644
+--- a/megatron/arguments.py
++++ b/megatron/arguments.py
+@@ -29,6 +29,7 @@ def parse_args(extra_args_provider=None, ignore_unknown_args=False):
+     parser = _add_logging_args(parser)
+     parser = _add_inference_args(parser)
+     parser = _add_transformer_engine_args(parser)
++    parser = _add_nlp_model_args(parser)
+ 
+     # Custom arguments.
+     if extra_args_provider is not None:
+@@ -1109,3 +1110,11 @@ def _add_vision_args(parser):
+                        help='warmup teacher temperaure epochs')
+ 
+     return parser
++
++
++def _add_nlp_model_args(parser):
++    group = parser.add_argument_group(title='nlp_model')
++    group.add_argument('--nlp-model-type', type=str, default=None,
++                       choices=['bert', 'gpt', 't5'],
++                       help='NLP model type')
++    return parser
 diff --git a/megatron/fused_kernels/__init__.py b/megatron/fused_kernels/__init__.py
-index 7646ddb..8709695 100644
+index 7646ddb..e8e3e89 100644
 --- a/megatron/fused_kernels/__init__.py
 +++ b/megatron/fused_kernels/__init__.py
 @@ -25,7 +25,7 @@ def load(args):
@@ -10,18 +31,15 @@ index 7646ddb..8709695 100644
          if int(bare_metal_minor) >= 7:
              cc_flag.append('-gencode')
 -            cc_flag.append('arch=compute_90,code=sm_90')
-+            cc_flag.append('arch=compute_75,code=sm_75')
++            cc_flag.append('arch=compute_70,code=sm_70')
  
      # Build path
      srcpath = pathlib.Path(__file__).parent.absolute()
-diff --git a/megatron/model/vision/__init__.py b/megatron/model/vision/__init__.py
-new file mode 100644
-index 0000000..e69de29
 diff --git a/setup.py b/setup.py
-index c5b18c1..805f8b9 100644
+index c5b18c1..2a14ec2 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -1,10 +1,17 @@
+@@ -1,10 +1,19 @@
  from setuptools import setup, find_packages
  
  setup(
@@ -39,6 +57,8 @@ index c5b18c1..805f8b9 100644
 +        'pybind11>=2.10.3',
 +        'torch>=1.13.1',
 +        'Ninja>=1.11.1',
++        'flash-attn>=0.2.8',
++        'einops>=0.6.0',
 +    ],
 +    packages=find_packages(include=("megatron.*"), exclude=["tests"]),
 +    package_data={'': ['*/Makefile', '*.h', '*.cpp', '*.cu', 'LICENSE']},
