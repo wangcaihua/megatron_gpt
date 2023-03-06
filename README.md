@@ -109,12 +109,12 @@ cd ckpt && unzip megatron_lm_345m_v0.0.zip && rm -rf megatron_lm_345m_v0.0.zip
 ```
 
 # Pretain
-## Run in single GPU
+## 1. Run in single GPU
 ```bash
 bash gpt_pretrain.sh
 ```
 
-## Run on multi-GPU with pipeline/tensor parallel
+## 2. Run on multi-GPU with pipeline/tensor parallel
 ```bash
 bash run_mpi.sh
 ```

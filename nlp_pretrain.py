@@ -42,7 +42,7 @@ def init_mpi_env():
     if 'RANK' not in os.environ:
         os.environ['RANK'] = os.environ.get('OMPI_COMM_WORLD_RANK', '0')
     if 'LOCAL_SIZE' not in os.environ:
-        os.environ['LOCAL_SIZE'] = os.environ.get('OMPI_COMM_WORLD_LOCAL_SIZE', '0')
+        os.environ['LOCAL_SIZE'] = os.environ.get('OMPI_COMM_WORLD_LOCAL_SIZE', '1')
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = os.environ.get('OMPI_COMM_WORLD_LOCAL_RANK', '0')
     if 'NODE_RANK' not in os.environ:
