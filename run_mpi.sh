@@ -1,3 +1,4 @@
+#! /bin/bash
 
 export USER=wangcaihua
 export PIPELINE_PARALLEL_SIZE=2
@@ -21,4 +22,3 @@ CMD=${1:-gpt_pretrain.sh}
        --wdir /home/${USER}/code/megatron_gpt \
        ${CMD} --pipeline-model-parallel-size ${PIPELINE_PARALLEL_SIZE} \
        --tensor-model-parallel-size ${TENSOR_PARALLEL_SIZE}
-       
